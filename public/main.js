@@ -10,6 +10,10 @@ async function init(){
 
 
     const input = document.getElementById('upload')
+    const loader = document.getElementById('loader')
+    const uploadLabel = document.getElementById('upload-label')
+
+
     const fileReader = new FileReader()
 
 
@@ -21,11 +25,21 @@ async function init(){
         document.getElementById('new-img').setAttribute(
             'src',img_data_url
         )
+        loader.classList.add(["hidden"])
+        uploadLabel.classList.remove(["hidden"])
     }
 
 
     input.addEventListener('change', () =>{
+
+        loader.classList.remove(["hidden"])
+        uploadLabel.classList.add(["hidden"])
+        document.getElementById('new-img').setAttribute(
+            'src',''
+        )
         fileReader.readAsDataURL(input.files[0])
+
+        
     })
 }
 

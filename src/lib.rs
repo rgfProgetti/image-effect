@@ -7,7 +7,7 @@ use std::io::Cursor;
 
 #[wasm_bindgen]
 pub fn grayscale(encoded_file: &str) -> String{
-   log(&"Grayscal called".into());
+   log(&"Effects called".into());
 
    let base64_to_vector = general_purpose::STANDARD
     .decode(encoded_file).unwrap();
@@ -18,6 +18,9 @@ pub fn grayscale(encoded_file: &str) -> String{
 
    img = img.grayscale();
    log(&"Grayscale effect applied".into());
+
+   img = img.brighten(20);
+   log(&"Image brightened".into());
 
     let mut buffer  = Cursor::new(vec![]);
     img.write_to(&mut buffer, Png).unwrap();
